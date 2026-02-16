@@ -2,22 +2,27 @@
 using System.Runtime.CompilerServices;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
-Console.WriteLine("Hello, Lada!");
-Console.WriteLine("[S]ee all todos");
-Console.WriteLine("[A]dd todo");
-Console.WriteLine("[R]emove todo");
-Console.WriteLine("[E]xit");
+Console.WriteLine("Provide a number.");
+string userInput = Console.ReadLine();
+int number = int.Parse(userInput);
+Console.WriteLine($"You entered: {number}" );
 
-var userChoice = Console.ReadLine();
-bool isLong = IsLong(userChoice);
+//Console.WriteLine("Hello, Lada!");
+//Console.WriteLine("[S]ee all todos");
+//Console.WriteLine("[A]dd todo");
+//Console.WriteLine("[R]emove todo");
+//Console.WriteLine("[E]xit");
 
-bool IsLong(string input)
-{
-    return input.Length > 10;
-}
+//var userChoice = Console.ReadLine();
+//bool isLong = IsLong(userChoice);
 
-var result = Add(10, 5);
-Console.WriteLine("The result of adding 10 and 5 is: {result}");
+//bool IsLong(string input)
+//{
+//    return input.Length > 10;
+//}
+
+//var result = Add(10, 5);
+//Console.WriteLine("The result of adding 10 and 5 is: {result}");
 
 //if (userChoice == "S")
 //{
@@ -40,14 +45,14 @@ Console.WriteLine("The result of adding 10 and 5 is: {result}");
 //    PrintSelectedOption("Invalid choice. Please try again.");
 //}
 
-//Console.ReadKey();
+Console.ReadKey();
 //void PrintSelectedOption(string selectedOption)
 //{
 //    Console.WriteLine($"You selected: {selectedOption}");
 //}
 
-int Add(int a, int b)
-{
-    return a + b;
-}
+//int Add(int a, int b)
+//{
+//    return a + b;
+//}
 
