@@ -1,4 +1,6 @@
 ﻿// See https://aka.ms/new-console-template for more information
+using System.Reflection.Metadata;
+
 Console.WriteLine("Hello, user!");
 
 Console.WriteLine("Please enter the first number:");
@@ -16,26 +18,57 @@ Console.WriteLine("[M]ultiply numbers");
 
 string userChoice = Console.ReadLine();
 
-if (userChoice == "A")
+// Set the number of retry attempts
+int retryCount = 3;
+
+for (retryCount = 3; retryCount > 0; retryCount--)
 {
-    int result = number1 + number2;
-    Console.WriteLine($"The result of adding {number1} and {number2} is: {result}");
-}
-else if (userChoice == "S")
-{
-    int result = number1 - number2;
-    Console.WriteLine($"The result of subtracting {number2} from {number1} is: {result}");
-}
-else if (userChoice == "M")
-{
-    int result = number1 * number2;
-    Console.WriteLine($"The result of multiplying {number1} and {number2} is: {result}");
-}
-else
-{
-    Console.WriteLine("Invalid choice. Please try again.");
+        ProgramLoop(userChoice);
 }
 
-Console.WriteLine("Press any key to exit...");
+void PrintFinalEquation(int number1, int number2, int result, string @operator)
+{
+    Console.WriteLine(number1 + " " + @operator + " " + number2 + " = " + result);
+}
 
-Console.ReadKey();
+bool EqualsCaseInsensitive(string str1, string str2)
+{
+    return str1.ToUpper() == str2.ToUpper();
+}
+
+void ExitProgramOnSuccess()
+{
+    Console.WriteLine("Press any key to exit...");
+    Console.ReadKey();
+}
+
+void ProgramLoop(string? userChoice)
+{
+    if (EqualsCaseInsensitive(userChoice, "A"))
+    {
+        int result = number1 + number2;
+        PrintFinalEquation(number1, number2, result, "+");
+        ExitProgramOnSuccess();
+        retryCount = 0; // Reset the retryCount if the operation is successful
+    }
+    else if (EqualsCaseInsensitive(userChoice, "S"))
+    {
+        int result = number1 - number2;
+        PrintFinalEquation(number1, number2, result, "-");
+        ExitProgramOnSuccess();
+        retryCount = 0; // Reset the retryCount if the operation is successful
+
+    }
+    else if (EqualsCaseInsensitive(userChoice, "M"))
+    {
+        int result = number1 * number2;
+        PrintFinalEquation(number1, number2, result, "*");
+        ExitProgramOnSuccess();
+        retryCount = 0; // Reset the retryCount if the operation is successful
+    }
+    else
+    {
+       Console.WriteLine("Invalid choice. Please try again.");
+        retryCount = 3; // Reset the retryCount for invalid input
+    }
+}
